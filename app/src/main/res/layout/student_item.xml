@@ -20,6 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="Nama"/>
     <TextView
+        android:id="@+id/tv_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
