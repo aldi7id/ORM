@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         fetchData()
     }
-    private fun fetchData() {
+    fun fetchData() {
         GlobalScope.launch {
             val listStudent = mDB?.studentDao()?.getAllStudent()
 

@@ -1,11 +1,12 @@
 package com.ajgroup.orm
 
-import android.arch.persistence.room.*
-import android.arch.persistence.room.OnConflictStrategy.REPLACE
+import androidx.room.*
+import androidx.room.OnConflictStrategy.REPLACE
+
 
 @Dao
 interface StudentDao {
-    @Query ("SELECT * FROM Student")
+    @Query("SELECT * FROM Student")
     fun getAllStudent(): List<Student>
 
     @Insert(onConflict = REPLACE)

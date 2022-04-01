@@ -2,10 +2,39 @@ package com.ajgroup.orm
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import com.ajgroup.orm.databinding.ActivityAddBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 
 class AddActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityAddBinding
+    var mDb: StudentDatabase? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add)
+        binding = ActivityAddBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        mDb = StudentDatabase.getInstance(this)
+
+        binding.btnSave.setOnClickListener {
+            val objectStudent = Student(
+                null,
+                binding.etNamaStudent.text.toString(),
+                binding.etEmailStudent.text.toString()
+            )
+            GlobalScope.async {
+                val result = mDb?.studentDao()?.insertStudent(objectStudent)
+                runOnUiThread { 
+                    if (result!= 0.toLong() ){
+                        //sukses
+                        Toast.makeText(this@AddActivity, "Sukses Menambahkan ${objectStudent.nama}", Toast.LENGTH_SHORT).show()
+                    } else {
+                        //gagal
+                        Toast.makeText(this@AddActivity, "Gagal menambahkan  ${objectStudent.nama}", Toast.LENGTH_SHORT).show()
+                    }
+                    finish()
+                }
+            }
+        }
     }
 }

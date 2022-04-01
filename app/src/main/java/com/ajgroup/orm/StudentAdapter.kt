@@ -14,14 +14,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 
 class StudentAdapter(val listStudent: List<Student>): RecyclerView.Adapter<StudentAdapter.ViewHolder>() {
-    class ViewHolder(val binding:StudentItemBinding,val binding1: ActivityAddBinding,val binding2: ActivityEditBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding:StudentItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = StudentItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        val binding1 = ActivityAddBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        val binding2 = ActivityEditBinding.inflate(LayoutInflater.from(parent.context),parent,false)
 
-        return ViewHolder(binding, binding1, binding2)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {

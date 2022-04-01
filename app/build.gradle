@@ -54,11 +54,16 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    def roomVersion = "2.4.2"
 
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$roomVersion")
     //Room Library
 
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    kapt "android.arch.persistence.room:compiler:1.1.1"
+//    implementation "android.arch.persistence.room:runtime:1.1.1"
+//    kapt "android.arch.persistence.room:compiler:1.1.1"
 
     //Library View Tambahan
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
